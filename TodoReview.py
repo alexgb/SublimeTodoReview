@@ -106,25 +106,28 @@ class Engine():
 
 				for num, line in enumerate(f, 1):
 					for result in self.patterns.finditer(line):
-						for patt, note in result.groupdict().items():
+						# for patt, note in result.groupdict().items():
+						matches = result.groupdict()
+						note = matches.get("note")
+						patt = matches.get("type")
 
-							if not note and note != '':
-								continue
+						if not note and note != '':
+							continue
 
-							priority_match = self.priority.search(note)
+						priority_match = self.priority.search(note)
 
-							if(priority_match):
-								priority = int(priority_match.group(1))
-							else:
-								priority = 100
+						if(priority_match):
+							priority = int(priority_match.group(1))
+						else:
+							priority = 100
 
-							yield {
-								'file': p,
-								'patt': patt,
-								'note': note,
-								'line': num,
-								'priority': priority
-							}
+						yield {
+							'file': p,
+							'patt': patt,
+							'note': note,
+							'line': num,
+							'priority': priority
+						}
 
 			except(IOError, UnicodeDecodeError):
 				f = None

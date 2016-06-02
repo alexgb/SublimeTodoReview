@@ -1,7 +1,7 @@
 {
 	"patterns": {
-		"TODO": "TODO[\\s]*?:[\\s]*(?P<todo>.*)$"
-	},
+    "TODO": "(?P<type>TODO(\\(.*\\))?)[\\s]*?:[\\s]*(?P<note>.*)$",
+  },
 	"patterns_weight": {
 	},
 	"exclude_folders": [

@@ -80,14 +80,14 @@ Global configuration can be set within the standard package settings menu (Prefe
 ## Adding comment patterns
 You can use any RegExp pattern to search by, leaving a lot of room for customization. Each pattern will generate a different group in the results page. For a lean install, only `TODO` comes in the default config. Use the example below to add your own patterns for searching. For more information on regex, please visit [Regex 101](http://regex101.com) and try the default patterns out.
 
-**It is important to note that at least one named group must be provided and will be used to group the comments in the results**
+**It is important to note that named patterns for `type` and `note` must be provided**
 
 ```javascript
 "patterns": {
-    "TODO": "TODO[\\s]*?:[\\s]*(?P<todo>.*)$",
-    "NOTE": "NOTE[\\s]*?:[\\s]*(?P<note>.*)$",
-    "FIXME": "FIX ?ME[\\s]*?:[\\s]*(?P<fixme>.*)$",
-    "CHANGED": "CHANGED[\\s]*?:[\\s]*(?P<changed>.*)$"
+    "TODO": "(?P<type>TODO(\\(.*\\))?)[\\s]*?:[\\s]*(?P<note>.*)$",
+    "NOTE": "(?P<type>NOTE(\\(.*\\))?)[\\s]*?:[\\s]*(?P<note>.*)$",
+    "FIXME": "(?P<type>FIX ?ME(\\(.*\\))?)[\\s]*?:[\\s]*(?P<note>.*)$",
+    "CHANGED": "(?P<type>CHANGED(\\(.*\\))?)[\\s]*?:[\\s]*(?P<note>.*)$"
 }
 ```
 
